@@ -1,0 +1,22 @@
+public class Graph {
+
+    //该算法适用于Math.abs(k)<=1的情形 ， 此时x每加1，y最多加1。
+    //当Math.abs(k)>1时，必须把x,y的地位互换，y每增加1，x相应增加1/k
+    public void DDALine(int x0, int y0, int x1, int y1, int color) {
+        int x;
+        float dx, dy, y, k;
+        dx = x1 - x0;
+        dy = y1 - y0;
+        k = dy / dx;
+        y = y0;
+        for (x=x0;x<=x1;x++){
+            drawpixel(x,Math.ceil(y+0.5),color);  //取整的目的是 为取离真正交点近的像素网格点作为光栅化后的点。需注意，取整会影响性能。
+            y+=k;
+        }
+    }
+
+    private void drawpixel(int x, double v, int color) {
+        //TODO OPENGL
+    }
+
+}
