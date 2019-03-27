@@ -18,5 +18,35 @@ public class Graph {
     private void drawpixel(int x, double v, int color) {
         //TODO OPENGL
     }
+    /**
+     * 算法描述
+     * 画直线段过程中，当前像素点为(xp,yp)，下一个像素点有两种可选择点P1(xp+1,yp),或P2(xp+1,yp+1)
+     * 若M = (xp+1,yp+0.5)为p1与p2中点，Q为理想直线与x=xp+1垂线的焦点。
+     * 当M在Q的下方时，p2应当为下一个像素点，否则为p1
+     */
+    public void midPointLine(int x0, int y0, int x1, int y1, int color) {
+        int a, b, d1, d2, d, x, y;
+        a = y0 - y1;
+        b = x1 - x0;
+        d = 2 * a + b;
 
+        d1 = 2 * a;
+        d2 = 2 * (a + b);
+        x = x0;
+        y = y0;
+        drawpixel(x, y, color);
+
+        while (x < x1) {
+            if (d < 0) {
+                x++;
+                y++;
+                d += d2;
+            } else {
+                x++;
+                d += d1;
+            }
+            drawpixel(x, y, color);
+        }
+
+    }
 }
