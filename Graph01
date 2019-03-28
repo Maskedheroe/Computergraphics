@@ -49,4 +49,29 @@ public class Graph {
         }
 
     }
+    
+     /**
+     * BresenHam算法 该算法主要有误差项符号决定下一个像素取右边点还是右上点
+     * 该算法巧妙点在于采用 增量计算，使得对于每一列，只要检查一个误差项的符号，就可确定所求的像素
+     * */
+    public void bresenhamLine(int x0, int y0, int x1, int y1, int color) {
+        int x, y, dx, dy;
+        float k, e;
+        dx = x1 - x0;
+        dy = y1 - y0;
+        k = dy / dx;
+        e = -0.5f;
+        x = y1 - y0;
+        y = y0;
+        for (int i = 0; i < dx; i++) {
+            drawpixel(x, y, color);
+            x = x + 1;
+            e = e + k;
+            if (e > 0) {
+                y++;
+                e = e - 1;
+            }
+        }
+
+    }
 }
